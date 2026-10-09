@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -6,10 +5,9 @@ from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 API_DOMAIN = "e-boekhouden.nl"
-# Not the working directory, so a `.env` in an untrusted checkout cannot change settings.
-ENV_FILE = (
-    Path(os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config") / "eboekhouden-mcp" / ".env"
-)
+# This project's `.env`, not the working directory's, so starting the server from another
+# directory cannot change settings.
+ENV_FILE = Path(__file__).resolve().parents[2] / ".env"
 
 
 class Settings(BaseSettings):

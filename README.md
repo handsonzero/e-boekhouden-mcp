@@ -10,12 +10,11 @@ Read-only by default: only `get_*` tools are available unless you set `EB_ALLOW_
 
 1. In e-boekhouden, create an API token: **Beheer → Inrichting → Koppelingen → API → e-Boekhouden API**.
 2. Install [uv](https://docs.astral.sh/uv/) and clone this repository.
-3. Store the token in a private config file:
+3. Store the token in a `.env` file in this directory (it is git-ignored):
 
    ```sh
-   mkdir -m 700 -p ~/.config/eboekhouden-mcp
-   cp .env.example ~/.config/eboekhouden-mcp/.env
-   chmod 600 ~/.config/eboekhouden-mcp/.env
+   cp .env.example .env
+   chmod 600 .env
    # then set EB_API_TOKEN in that file
    ```
 
@@ -40,7 +39,7 @@ Read-only by default: only `get_*` tools are available unless you set `EB_ALLOW_
 
 ## Configuration
 
-Set these in `~/.config/eboekhouden-mcp/.env` (or `$XDG_CONFIG_HOME/eboekhouden-mcp/.env`) or as environment variables. A `.env` in the working directory is not read.
+Set these in the `.env` file in this directory or as environment variables (which take precedence). A `.env` in any other working directory is not read.
 
 | Variable          | Default                       | Description                                          |
 |-------------------|-------------------------------|------------------------------------------------------|
