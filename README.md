@@ -2,7 +2,7 @@
 
 An [MCP](https://modelcontextprotocol.io) server for the [e-boekhouden.nl](https://www.e-boekhouden.nl) API. Its tools are generated from e-boekhouden's OpenAPI spec.
 
-Unofficial; not affiliated with e-boekhouden.nl.
+**Unofficial; not affiliated with e-boekhouden.nl.**
 
 Read-only by default: only `get_*` tools are available unless you set `EB_ALLOW_WRITES=true`.
 
