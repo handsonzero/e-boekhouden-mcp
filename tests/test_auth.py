@@ -7,7 +7,7 @@ from tests.conftest import FakeApi
 
 
 def ok(_: httpx2.Request) -> httpx2.Response:
-    return httpx2.Response(200, json={"Items": [], "Count": 0})
+    return httpx2.Response(200, json={"items": [], "count": 0})
 
 
 def client(api: FakeApi, token: str = "secret-api-token") -> httpx2.AsyncClient:

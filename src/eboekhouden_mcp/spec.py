@@ -106,9 +106,9 @@ def _expand_filters(parameters: list[dict[str, Any]]) -> list[dict[str, Any]]:
     expanded: list[dict[str, Any]] = []
     for param in parameters:
         expanded.append(param)
-        operators = FILTER_OPERATORS.get(param.get("schema", {}).get("format", ""), {})
         if param.get("in") != "query":
             continue
+        operators = FILTER_OPERATORS.get(param.get("schema", {}).get("format", ""), {})
         for op, description in operators.items():
             expanded.append(
                 {

@@ -19,14 +19,14 @@ from mcp.types import ToolAnnotations
 from pydantic import ValidationError
 
 from eboekhouden_mcp.auth import SESSION_PATH, SessionAuth
-from eboekhouden_mcp.config import Settings
+from eboekhouden_mcp.config import ENV_FILE, Settings
 from eboekhouden_mcp.spec import load_spec, rewrite_filters
 
 INSTRUCTIONS = """\
 Access to a Dutch e-boekhouden.nl bookkeeping administration.
 
 - List tools are paginated: `limit` (default 100, max 2000) and `offset`. Responses
-  contain `Items` and the total `Count`; page further when Count exceeds the items.
+  contain `items` and the total `count`; page further when count exceeds the items.
 - Dates are ISO 8601 `YYYY-MM-DD`. Amounts are in EUR.
 - Filter variants: `<field>__gte` / `<field>__lte` for date and number ranges, and
   `<field>__like` for wildcard text search (`%` = any characters, `?` = one character).
@@ -102,5 +102,5 @@ def main() -> None:
     try:
         settings = Settings()  # pyright: ignore[reportCallIssue]
     except ValidationError as e:
-        sys.exit(f"eboekhouden-mcp: invalid configuration, set EB_API_TOKEN.\n{e}")
+        sys.exit(f"eboekhouden-mcp: invalid configuration, check {ENV_FILE}.\n{e}")
     build_server(settings).run()

@@ -36,14 +36,14 @@ async def test_call_get_invoices(
     invoice = {"Id": 1000, "InvoiceNumber": "F00001", "TotalAmount": 131.89}
 
     def invoices(_: httpx2.Request) -> httpx2.Response:
-        return httpx2.Response(200, json={"Items": [invoice], "Count": 1})
+        return httpx2.Response(200, json={"items": [invoice], "count": 1})
 
     api.routes[("GET", "/v1/invoice")] = invoices
     async with Client(build_server(settings, transport)) as client:
         result = await client.call_tool(
             "get_invoices", {"limit": 5, "offset": 10, "date__gte": "2025-01-01"}
         )
-    assert result.structured_content == {"Items": [invoice], "Count": 1}
+    assert result.structured_content == {"items": [invoice], "count": 1}
     (request,) = api.api_requests
     assert request.headers["Authorization"] == "session-1"
     assert dict(request.url.params) == {"limit": "5", "offset": "10", "date[gte]": "2025-01-01"}

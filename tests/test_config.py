@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from eboekhouden_mcp.config import Settings
+from eboekhouden_mcp.config import ENV_FILE, Settings
 
 
 @pytest.mark.parametrize(
@@ -23,3 +23,8 @@ def test_api_token_is_not_shown_in_errors() -> None:
     with pytest.raises(ValidationError) as error:
         Settings(api_token="secret-api-token", source="x" * 11, _env_file=None)  # pyright: ignore[reportCallIssue]
     assert "secret-api-token" not in str(error.value)
+
+
+def test_env_file_is_next_to_pyproject() -> None:
+    assert ENV_FILE.is_absolute()
+    assert (ENV_FILE.parent / "pyproject.toml").is_file()
