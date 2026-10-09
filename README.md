@@ -1,5 +1,7 @@
 # eboekhouden-mcp
 
+As a freelancer, I use e-boekhouden.nl for my bookkeeping. When I needed an MCP server for it, there was no implementation in Python, so I built one.
+
 An [MCP](https://modelcontextprotocol.io) server for the [e-boekhouden.nl](https://www.e-boekhouden.nl) API. Its tools are generated from e-boekhouden's OpenAPI spec.
 
 **Unofficial; not affiliated with e-boekhouden.nl.**
